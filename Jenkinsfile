@@ -3,8 +3,8 @@ pipeline {
     environment {
         DJANGO_SETTINGS_MODULE = 'todo.settings'
         DOCKER_IMAGE = 'todo'
-        REGISTRY_CREDENTIALS = credentials('manishpawar')
-        registry = "manish222508/todo"
+        REGISTRY_CREDENTIALS = credentials('rutujamane')
+        registry = "rutujamane/to-do-app"
     }
     stages {
         stage('Build Docker Image') {
@@ -17,7 +17,7 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 script {
-                    docker.withRegistry('https://index.docker.io/v1/', 'manishpawar') {
+                    docker.withRegistry('https://index.docker.io/v1/', 'rutujamane') {
                         docker.image(registry + ":${env.BUILD_ID}").push('latest')
                     }
                 }
